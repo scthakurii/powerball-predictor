@@ -5,7 +5,7 @@ output "vpc_id" {
 
 output "public_subnets" {
   description = "List of public subnets in the VPC"
-  value       = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
+  value       = [for subnet in aws_subnet.public : subnet.id]
 }
 
 output "ecs_alb_sg" {
@@ -64,6 +64,9 @@ output "alb_role_arn" {
 }
 
 output "frontend_website_url" {
-  description = "S3 Website URL for the frontend"
-  value       = "http://${aws_s3_bucket.frontend_bucket.bucket}.s3-website-${var.aws_region}.amazonaws.com"
+  value = format(
+    "http://%s.s3-website-%s.amazonaws.com",
+    aws_s3_bucket.frontend_bucket.bucket,
+    var.aws_region
+  )
 }

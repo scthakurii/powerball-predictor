@@ -3,18 +3,7 @@ resource "aws_s3_bucket" "powerball_models" {
 }
 
 resource "aws_s3_bucket_public_access_block" "block_public_access" {
-  bucket = aws_s3_bucket.powerball_models.id
-  block_public_acls = true
-  block_public_policy = true
-}
-
-# =========================== ☁️ S3 Bucket for Models ===========================
-resource "aws_s3_bucket" "powerball_models" {
-  bucket = var.s3_bucket_name
-}
-
-resource "aws_s3_bucket_public_access_block" "block_model_bucket" {
-  bucket = aws_s3_bucket.powerball_models.id
+  bucket              = aws_s3_bucket.powerball_models.id
   block_public_acls   = true
   block_public_policy = true
 }
@@ -36,10 +25,10 @@ resource "aws_s3_bucket_policy" "frontend_policy" {
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
-      Effect = "Allow",
+      Effect    = "Allow",
       Principal = "*",
-      Action = "s3:GetObject",
-      Resource = "arn:aws:s3:::${aws_s3_bucket.frontend_bucket.id}/*"
+      Action    = "s3:GetObject",
+      Resource  = "arn:aws:s3:::${aws_s3_bucket.frontend_bucket.id}/*"
     }]
   })
 }

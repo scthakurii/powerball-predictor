@@ -169,3 +169,77 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+# Terraform lock file (used to track provider versions)
+.terraform.lock.hcl
+
+# Terraform working directory (cache & provider binaries)
+.terraform/
+
+# Terraform execution plans (binary output of `terraform plan -out`)
+*.tfplan
+
+# Ignore local overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# LocalStack metadata
+.localstack/
+
+# Environment variables (secrets)
+.env
+.envrc
+*.env.local
+secrets.tfvars
+credentials.json
+
+# Ignore SSH keys (if Terraform manages SSH access)
+*.pem
+*.key
+
+# AWS credential files (prevent secrets leakage)
+.aws/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+
+# Linux file permissions backup
+*~
+
+# VS Code workspace settings
+.vscode/
+
+# JetBrains (IntelliJ, PyCharm, GoLand) IDE files
+.idea/
+
+# Logs & debug output
+*.log
+*.out
+*.err
+
+# Temporary files (cache, backup)
+*.swp
+*.swo
+*.bak
+*.tmp
+*.lock
+*.cache
+
+# Docker containers & volumes
+.docker/
+docker-compose.override.yml
+
